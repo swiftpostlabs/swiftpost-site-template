@@ -1,0 +1,33 @@
+{
+  "_comment": [
+    "Export config for the SwiftPost site-template Gems. Shared by both language",
+    "variants; the instruction template is chosen with --instructions.",
+    "",
+    "Run from an agentic-tools checkout sitting beside this repo:",
+    "  uv run python -m agentic_tools.main.cli export build --target gemini-gem \\",
+    "    --skills-root ../swiftpost-site-template/.agents/skills \\",
+    "    --config ../swiftpost-site-template/chat-assistants/gemini-gem/templates/site-template.config.json \\",
+    "    --instructions ../swiftpost-site-template/chat-assistants/gemini-gem/templates/site-template.template.md \\",
+    "    --out ../swiftpost-site-template/chat-assistants/gemini-gem/site-template",
+    "",
+    "This repo cannot run it: its agentic-tools dependency resolves to the legacy",
+    "Node CLI, which has skills and policy but no export command."
+  ],
+  "select": {
+    "visibility": ["public", "organization", "repo-local"],
+    "prefixes": ["ref-"],
+    "domains": ["dev", "js"],
+    "excludeSkills": {
+      "ref-sp-dev-docs-authoring": "README authoring is not what this assistant is for",
+      "ref-sp-dev-git-commits": "the person is not driving git from this chat",
+      "ref-sp-dev-github-actions-ci": "CI workflows are out of scope for editing site files",
+      "ref-sp-dev-github-dependabot": "dependency automation is out of scope",
+      "ref-sp-dev-package-management": "release metadata is out of scope",
+      "ref-sp-dev-semantic-versioning": "release numbering is out of scope"
+    }
+  },
+  "inject": {
+    "PERSONA": "ref-sp-agents-mr-wolf-persona",
+    "VERIFICATION": "ref-sp-agents-verification-discipline"
+  }
+}
